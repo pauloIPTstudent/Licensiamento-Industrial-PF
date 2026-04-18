@@ -1,0 +1,406 @@
+{
+  "nodes": [
+    {
+      "id": "start-node",
+      "type": "question",
+      "position": { "x": 0, "y": 0 },
+      "data": {
+        "label": "O projeto enquadra-se em Refinarias, Gaseificação ou Liquefação?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 1 e 2",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "refinaria-detail",
+          "handle-1": "energy-node"
+        }
+      }
+    },
+    {
+      "id": "refinaria-detail",
+      "type": "question",
+      "position": { "x": 250, "y": -100 },
+      "data": {
+        "label": "Qual a capacidade/tipo da instalação?",
+        "opcoes": [
+          "Refinaria de petróleo bruto",
+          "Gaseificação/Liquefação >= 500t carvão/dia",
+          "Nenhuma das anteriores"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "energy-node"
+        }
+      }
+    },
+    {
+      "id": "energy-node",
+      "type": "question",
+      "position": { "x": 500, "y": 0 },
+      "data": {
+        "label": "Setor de Energia: Centrais Térmicas ou Nucleares?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 3 e 4",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "energy-detail",
+          "handle-1": "quimica-node"
+        }
+      }
+    },
+    {
+      "id": "energy-detail",
+      "type": "question",
+      "position": { "x": 750, "y": -50 },
+      "data": {
+        "label": "Verificar Limiares de Energia",
+        "opcoes": [
+          "Central Térmica >= 300 MW",
+          "Central Nuclear ou Reator Nuclear",
+          "Instalação de Reprocessamento/Armazenagem Nuclear",
+          "Abaixo destes limiares"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "conclusion-aia-obrigatoria",
+          "handle-3": "quimica-node"
+        }
+      }
+    },
+    {
+      "id": "quimica-node",
+      "type": "question",
+      "position": { "x": 1000, "y": 100 },
+      "data": {
+        "label": "Instalações Químicas Integradas (Escala Industrial)?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 6",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "residuos-node"
+        }
+      }
+    },
+    {
+      "id": "residuos-node",
+      "type": "question",
+      "position": { "x": 1250, "y": 200 },
+      "data": {
+        "label": "Gestão de Resíduos",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 9 e 10",
+        "opcoes": [
+          "Incineração/Aterro de Resíduos Perigosos",
+          "Incineração/Tratamento Resíduos Não Perigosos > 100t/dia",
+          "Nenhum destes"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "pecuaria-node"
+        }
+      }
+    },
+    {
+      "id": "pecuaria-node",
+      "type": "question",
+      "position": { "x": 1500, "y": 300 },
+      "data": {
+        "label": "Pecuária Intensiva",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 25",
+        "opcoes": [
+          "> 85.000 frangos ou 60.000 galinhas",
+          "> 3.000 porcos (>30kg) ou 900 porcas",
+          "Abaixo destes valores"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "screening-anexo2"
+        }
+      }
+    },
+    {
+      "id": "conclusion-aia-obrigatoria",
+      "type": "conclusion",
+      "position": { "x": 1000, "y": -300 },
+      "data": {
+        "label": "Licenciamento Tipo 1: AIA Obrigatória",
+        "conclusaoText": "O projeto enquadra-se nas tipologias do Anexo I do RJAIA. \n\nResultado: É obrigatória a submissão de Estudo de Impacte Ambiental (EIA) antes do licenciamento industrial. \n\nFundamentação: Decreto-Lei n.º 152-B/2013.",
+        "trechoLei": "Anexo I do DL 152-B/2013"
+      }
+    },
+{
+      "id": "screening-anexo2",
+      "type": "question",
+      "position": { "x": 1800, "y": 500 },
+      "data": {
+        "label": "A atividade pertence ao Setor da Energia?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 1",
+        "opcoes":  ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "pcip-energia-detail",
+          "handle-1": "pcip-metais-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-energia-detail",
+      "type": "question",
+      "position": { "x": 250, "y": -100 },
+      "data": {
+        "label": "Verificar Tipologia e Potência (Energia)",
+        "opcoes": [
+          "Queima combustíveis >= 50 MW térmicos",
+          "Refinação de petróleo/gás ou Produção Coque",
+          "Gaseificação/Liquefação de Carvão",
+          "Gaseificação outros combustíveis >= 20 MW",
+          "Abaixo destes limiares"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "pcip-metais-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-metais-node",
+      "type": "question",
+      "position": { "x": 500, "y": 100 },
+      "data": {
+        "label": "Produção ou Transformação de Metais?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 2",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "pcip-metais-detail",
+          "handle-1": "pcip-residuos-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-metais-detail",
+      "type": "question",
+      "position": { "x": 750, "y": 50 },
+      "data": {
+        "label": "Capacidades de Produção (Metais)",
+        "opcoes": [
+          "Gusa/Aço (vazamento) > 2,5 t/hora",
+          "Laminagem a quente > 20 t aço bruto/hora",
+          "Fundição metais ferrosos > 20 t/dia",
+          "Fundição metais não ferrosos > 4 t/dia (Pb/Cd) ou 20 t/dia (outros)",
+          "Tratamento superfície (cubas) > 30 m3",
+          "Nenhuma destas"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "conclusion-pcip-obrigatorio",
+          "handle-5": "pcip-residuos-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-residuos-node",
+      "type": "question",
+      "position": { "x": 1000, "y": 200 },
+      "data": {
+        "label": "Gestão e Tratamento de Resíduos?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 5",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "pcip-residuos-detail",
+          "handle-1": "pcip-pecuaria-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-residuos-detail",
+      "type": "question",
+      "position": { "x": 1250, "y": 150 },
+      "data": {
+        "label": "Capacidades (Resíduos)",
+        "opcoes": [
+          "Resíduos Perigosos > 10 t/dia",
+          "Incineração não perigosos > 3 t/hora",
+          "Eliminação não perigosos > 50 t/dia",
+          "Aterros > 10 t/dia ou Cap. Total > 25.000 t",
+          "Nenhuma destas"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "pcip-pecuaria-node"
+        }
+      }
+    },
+    {
+      "id": "pcip-pecuaria-node",
+      "type": "question",
+      "position": { "x": 1500, "y": 300 },
+      "data": {
+        "label": "Criação Intensiva (Lugares)",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 6.6",
+        "opcoes": [
+          "> 40.000 aves",
+          "> 2.000 porcos (>30kg)",
+          "> 750 porcas",
+          "Abaixo destes"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-nao-abrangedo"
+        }
+      }
+    },
+    {
+      "id": "conclusion-pcip-obrigatorio",
+      "type": "conclusion",
+      "position": { "x": 1000, "y": -400 },
+      "data": {
+        "label": "Abrangido pelo RJPCIP",
+        "conclusaoText": "A instalação está sujeita ao regime PCIP.\n\nJustificação: A atividade ultrapassa os limiares do Anexo I do DL 127/2013.",
+        "trechoLei": "Anexo I do DL 127/2013"
+      }
+    },
+    {
+      "id": "conclusion-nao-abrangedo",
+      "type": "question",
+      "position": { "x": 1800, "y": 500 },
+      "data": {
+        "label": "Existem substâncias designadas (Parte 2)?",
+        "trechoLei": "DL 150/2015, Anexo I, Parte 2",
+        "opcoes": ["Sim", "Não"],
+        "proximos": {
+          "handle-0": "rpag-parte2-detail",
+          "handle-1": "rpag-categorias-node"
+        }
+      }
+    },
+    {
+      "id": "rpag-parte2-detail",
+      "type": "question",
+      "position": { "x": 300, "y": -100 },
+      "data": {
+        "label": "Verificar Substância Específica",
+        "opcoes": ["Nitrato de Amónio", "Gás Natural", "Produtos Petrolíferos", "Outras", "Voltar"],
+        "proximos": {
+          "handle-0": "rpag-calc-node",
+          "handle-1": "rpag-calc-node",
+          "handle-2": "rpag-calc-node",
+          "handle-3": "rpag-calc-node",
+          "handle-4": "rpag-categorias-node"
+        }
+      }
+    },
+    {
+      "id": "rpag-categorias-node",
+      "type": "question",
+      "position": { "x": 300, "y": 150 },
+      "data": {
+        "label": "Categorias de Perigo (CLP)",
+        "opcoes": ["Saúde (H)", "Físicos (P)", "Ambiente (E)", "Nenhuma"],
+        "proximos": {
+          "handle-0": "rpag-calc-node",
+          "handle-1": "rpag-calc-node",
+          "handle-2": "rpag-calc-node",
+          "handle-3": "conclusion-isento-rpag"
+        }
+      }
+    },
+    {
+      "id": "rpag-calc-node",
+      "type": "question",
+      "position": { "x": 700, "y": 50 },
+      "data": {
+        "label": "Regra da Adição",
+        "opcoes": ["Nível Superior", "Nível Inferior", "Q >= Coluna 3", "Q >= Coluna 2", "Soma < 1"],
+        "proximos": {
+          "handle-0": "conclusion-rpag-superior",
+          "handle-1": "conclusion-rpag-inferior",
+          "handle-2": "conclusion-rpag-superior",
+          "handle-3": "conclusion-rpag-inferior",
+          "handle-4": "conclusion-isento-rpag"
+        }
+      }
+    },
+    {
+      "id": "conclusion-rpag-superior",
+      "type": "conclusion",
+      "position": { "x": 1100, "y": -150 },
+      "data": { "label": "RPAG: Nível Superior", "conclusaoText": "Estabelecimento Seveso III Nível Superior." }
+    },
+    {
+      "id": "conclusion-rpag-inferior",
+      "type": "conclusion",
+      "position": { "x": 1100, "y": 150 },
+      "data": { "label": "RPAG: Nível Inferior", "conclusaoText": "Estabelecimento Seveso III Nível Inferior." }
+    },
+    {
+      "id": "conclusion-isento-rpag",
+      "type": "question",
+      "position": { "x": 1100, "y": 450 },
+      "data": {
+        "label": "Gestão de REEE?",
+        "opcoes": ["Sim", "Não"],
+        "proximos": { "handle-0": "reee-categorias", "handle-1": "agro-start" }
+      }
+    },
+    {
+      "id": "reee-categorias",
+      "type": "question",
+      "position": { "x": 300, "y": 400 },
+      "data": {
+        "label": "Categoria REEE",
+        "opcoes": ["Cat 1, 2 ou 3", "Cat 4, 5 ou 6"],
+        "proximos": { "handle-0": "conclusion-reee-perigoso", "handle-1": "conclusion-reee-geral" }
+      }
+    },
+    {
+      "id": "agro-start",
+      "type": "question",
+      "position": { "x": 300, "y": 650 },
+      "data": {
+        "label": "Risco Veterinário?",
+        "opcoes": ["Matéria-prima animal", "Subprodutos (SAVAN)", "Rações", "Nenhuma"],
+        "proximos": {
+          "handle-0": "conclusion-agro-ncv",
+          "handle-1": "conclusion-agro-ncv",
+          "handle-2": "conclusion-agro-ncv",
+          "handle-3": "conclusion-agro-comum"
+        }
+      }
+    },
+    {
+      "id": "conclusion-reee-perigoso",
+      "type": "conclusion",
+      "position": { "x": 700, "y": 400 },
+      "data": { "label": "REEE Sensível", "conclusaoText": "Gestão de resíduos perigosos." }
+    },
+    {
+      "id": "conclusion-reee-geral",
+      "type": "conclusion",
+      "position": { "x": 700, "y": 500 },
+      "data": { "label": "REEE Comum", "conclusaoText": "Gestão de resíduos comuns." }
+    },
+    {
+      "id": "conclusion-agro-ncv",
+      "type": "conclusion",
+      "position": { "x": 700, "y": 600 },
+      "data": { "label": "Agro: NCV Necessário", "conclusaoText": "Exige Número de Controlo Veterinário." }
+    },
+    {
+      "id": "conclusion-agro-comum",
+      "type": "conclusion",
+      "position": { "x": 700, "y": 700 },
+      "data": { "label": "Agro Comum", "conclusaoText": "Atividade de baixo risco veterinário." }
+    }
+  ],
+  "edges": []
+}

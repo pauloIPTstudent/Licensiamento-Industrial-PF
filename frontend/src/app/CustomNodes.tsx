@@ -1,33 +1,80 @@
 import { Handle, Position } from 'reactflow';
 
-// Estilo comum para os nodes
 const nodeStyle = {
   padding: '10px',
-  borderRadius: '5px',
+  borderRadius: '8px',
   fontSize: '12px',
   color: '#fff',
   textAlign: 'center' as const,
-  border: '1px solid #222',
+  border: '1px solid #1e3a8a',
+  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
 };
 
-// Node Intermediário (Pergunta)
-export const QuestionNode = ({ data }: any) => (
-  <div style={{ ...nodeStyle, background: '#2563eb', width: '150px' }}>
-    <Handle type="target" position={Position.Top} />
-    <div><strong>Pergunta:</strong><br />{data.label}</div>
-    {/* Saídas específicas para Sim e Não */}
-    <Handle type="source" position={Position.Bottom} id="sim" style={{ left: '30%', background: '#22c55e' }} />
-    <div style={{ position: 'absolute', bottom: '-20px', left: '20%', fontSize: '10px', color: '#000' }}>Sim</div>
-    
-    <Handle type="source" position={Position.Bottom} id="nao" style={{ left: '70%', background: '#ef4444' }} />
-    <div style={{ position: 'absolute', bottom: '-20px', left: '65%', fontSize: '10px', color: '#000' }}>Não</div>
-  </div>
-);
+export const QuestionNode = ({ data }: any) => {
+  // Garantimos que 'opcoes' existe para não quebrar o map
+  const opcoes = data.opcoes || [];
 
-// Node de Conclusão
+  return (
+    <div style={{ 
+      ...nodeStyle, 
+      background: '#2563eb', 
+      width: '180px', 
+      minHeight: '60px',
+      position: 'relative' 
+    }}>
+      {/* Entrada superior única */}
+      <Handle type="target" position={Position.Top} style={{ background: '#fff' }} />
+      
+      <div style={{ marginBottom: '10px', fontWeight: 'bold' }}>
+        {data.label}
+      </div>
+
+      {/* Renderização dinâmica das opções e seus respectivos Handles */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+        {opcoes.map((opcao: string, index: number) => (
+          <div 
+            key={index} 
+            style={{ 
+              background: 'rgba(255, 255, 255, 0.2)', 
+              padding: '4px 8px', 
+              borderRadius: '4px',
+              fontSize: '10px',
+              position: 'relative',
+              textAlign: 'right',
+              marginRight: '-5px'
+            }}
+          >
+            {opcao}
+            <Handle
+              type="source"
+              position={Position.Right}
+              id={`handle-${index}`} // O ID deve ser idêntico ao que o Flow.tsx espera
+              style={{ 
+                right: '-10px', 
+                background: '#fbbf24', // Cor amarela para destacar as saídas
+                width: '8px',
+                height: '8px'
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export const ConclusionNode = ({ data }: any) => (
-  <div style={{ ...nodeStyle, background: '#059669', width: '150px' }}>
-    <Handle type="target" position={Position.Top} />
-    <div><strong>Conclusão:</strong><br />{data.label}</div>
+  <div style={{ 
+    ...nodeStyle, 
+    background: '#059669', 
+    width: '150px',
+    border: '1px solid #064e3b' 
+  }}>
+    <Handle type="target" position={Position.Top} style={{ background: '#fff' }} />
+    <div>
+      <strong style={{ fontSize: '10px', opacity: 0.8 }}>CONCLUSÃO</strong>
+      <br />
+      {data.label}
+    </div>
   </div>
 );
