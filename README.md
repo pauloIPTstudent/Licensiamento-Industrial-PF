@@ -6,7 +6,8 @@ Este projeto consiste na criação de um chatbot sobre licenciamento industrial 
 
 ```
 cd frontend
-npm intall
+npm install
+mv env.example .env 
 ```
 
 # Start
