@@ -1,0 +1,1239 @@
+{
+  "nodes": [
+    {
+      "id": "start-node",
+      "type": "question",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "O projeto enquadra-se em Refinarias, Gaseificação ou Liquefação?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 1 e 2",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "refinaria-detail",
+          "handle-1": "energy-node"
+        }
+      },
+      "width": 180,
+      "height": 137
+    },
+    {
+      "id": "refinaria-detail",
+      "type": "question",
+      "position": {
+        "x": 250,
+        "y": -100
+      },
+      "data": {
+        "label": "Qual a capacidade/tipo da instalação?",
+        "opcoes": [
+          "Refinaria de petróleo bruto",
+          "Gaseificação/Liquefação >= 500t carvão/dia",
+          "Nenhuma das anteriores"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "energy-node"
+        }
+      },
+      "width": 180,
+      "height": 162
+    },
+    {
+      "id": "energy-node",
+      "type": "question",
+      "position": {
+        "x": 500,
+        "y": 0
+      },
+      "data": {
+        "label": "Setor de Energia: Centrais Térmicas ou Nucleares?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 3 e 4",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "energy-detail",
+          "handle-1": "quimica-node"
+        }
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "energy-detail",
+      "type": "question",
+      "position": {
+        "x": 750,
+        "y": -50
+      },
+      "data": {
+        "label": "Verificar Limiares de Energia",
+        "opcoes": [
+          "Central Térmica >= 300 MW",
+          "Central Nuclear ou Reator Nuclear",
+          "Instalação de Reprocessamento/Armazenagem Nuclear",
+          "Abaixo destes limiares"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "conclusion-aia-obrigatoria",
+          "handle-3": "quimica-node"
+        }
+      },
+      "width": 180,
+      "height": 220
+    },
+    {
+      "id": "quimica-node",
+      "type": "question",
+      "position": {
+        "x": 1000,
+        "y": 100
+      },
+      "data": {
+        "label": "Instalações Químicas Integradas (Escala Industrial)?",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 6",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "residuos-node"
+        }
+      },
+      "width": 180,
+      "height": 137
+    },
+    {
+      "id": "residuos-node",
+      "type": "question",
+      "position": {
+        "x": 1250,
+        "y": 200
+      },
+      "data": {
+        "label": "Gestão de Resíduos",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 9 e 10",
+        "opcoes": [
+          "Incineração/Aterro de Resíduos Perigosos",
+          "Incineração/Tratamento Resíduos Não Perigosos > 100t/dia",
+          "Nenhum destes"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "pecuaria-node"
+        }
+      },
+      "width": 180,
+      "height": 174
+    },
+    {
+      "id": "pecuaria-node",
+      "type": "question",
+      "position": {
+        "x": 1500,
+        "y": 300
+      },
+      "data": {
+        "label": "Pecuária Intensiva",
+        "trechoLei": "DL 152-B/2013, Anexo I, n.º 25",
+        "opcoes": [
+          "> 85.000 frangos ou 60.000 galinhas",
+          "> 3.000 porcos (>30kg) ou 900 porcas",
+          "Abaixo destes valores"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-aia-obrigatoria",
+          "handle-1": "conclusion-aia-obrigatoria",
+          "handle-2": "screening-anexo2"
+        }
+      },
+      "width": 180,
+      "height": 159
+    },
+    {
+      "id": "conclusion-aia-obrigatoria",
+      "type": "conclusion",
+      "position": {
+        "x": 1474,
+        "y": -286
+      },
+      "data": {
+        "label": "Licenciamento Tipo 1: AIA Obrigatória",
+        "conclusaoText": "O projeto enquadra-se nas tipologias do Anexo I do RJAIA. \n\nResultado: É obrigatória a submissão de Estudo de Impacte Ambiental (EIA) antes do licenciamento industrial. \n\nFundamentação: Decreto-Lei n.º 152-B/2013.",
+        "trechoLei": "Anexo I do DL 152-B/2013"
+      },
+      "width": 150,
+      "height": 76,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1474,
+        "y": -286
+      },
+      "dragging": false
+    },
+    {
+      "id": "screening-anexo2",
+      "type": "conclusion",
+      "position": {
+        "x": 1800,
+        "y": 500
+      },
+      "data": {
+        "label": "Análise de Sensibilidade (Anexo II/III)",
+        "conclusaoText": "O projeto não atinge os limiares de AIA direta (Anexo I). \n\nPróximo Passo: Analisar se está no Anexo II e aplicar os critérios do Anexo III (Dimensão, Localização e Impacte) para determinar se a APA decide pela necessidade de AIA.",
+        "trechoLei": "Anexo II e III do DL 152-B/2013"
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "screening-anexo2",
+      "type": "question",
+      "position": {
+        "x": 1800,
+        "y": 500
+      },
+      "data": {
+        "label": "A atividade pertence ao Setor da Energia?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 1",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "pcip-energia-detail",
+          "handle-1": "pcip-metais-node"
+        }
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "pcip-energia-detail",
+      "type": "question",
+      "position": {
+        "x": 250,
+        "y": -100
+      },
+      "data": {
+        "label": "Verificar Tipologia e Potência (Energia)",
+        "opcoes": [
+          "Queima combustíveis >= 50 MW térmicos",
+          "Refinação de petróleo/gás ou Produção Coque",
+          "Gaseificação/Liquefação de Carvão",
+          "Gaseificação outros combustíveis >= 20 MW",
+          "Abaixo destes limiares"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "pcip-metais-node"
+        }
+      },
+      "width": 180,
+      "height": 263
+    },
+    {
+      "id": "pcip-metais-node",
+      "type": "question",
+      "position": {
+        "x": 500,
+        "y": 100
+      },
+      "data": {
+        "label": "Produção ou Transformação de Metais?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 2",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "pcip-metais-detail",
+          "handle-1": "pcip-residuos-node"
+        }
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "pcip-metais-detail",
+      "type": "question",
+      "position": {
+        "x": 750,
+        "y": 50
+      },
+      "data": {
+        "label": "Capacidades de Produção (Metais)",
+        "opcoes": [
+          "Gusa/Aço (vazamento) > 2,5 t/hora",
+          "Laminagem a quente > 20 t aço bruto/hora",
+          "Fundição metais ferrosos > 20 t/dia",
+          "Fundição metais não ferrosos > 4 t/dia (Pb/Cd) ou 20 t/dia (outros)",
+          "Tratamento superfície (cubas) > 30 m3",
+          "Nenhuma destas"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "conclusion-pcip-obrigatorio",
+          "handle-5": "pcip-residuos-node"
+        }
+      },
+      "width": 180,
+      "height": 321
+    },
+    {
+      "id": "pcip-residuos-node",
+      "type": "question",
+      "position": {
+        "x": 1000,
+        "y": 200
+      },
+      "data": {
+        "label": "Gestão e Tratamento de Resíduos?",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 5",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "pcip-residuos-detail",
+          "handle-1": "pcip-pecuaria-node"
+        }
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "pcip-residuos-detail",
+      "type": "question",
+      "position": {
+        "x": 1250,
+        "y": 150
+      },
+      "data": {
+        "label": "Capacidades (Resíduos)",
+        "opcoes": [
+          "Resíduos Perigosos > 10 t/dia",
+          "Incineração não perigosos > 3 t/hora",
+          "Eliminação não perigosos > 50 t/dia",
+          "Aterros > 10 t/dia ou Cap. Total > 25.000 t",
+          "Nenhuma destas"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-pcip-obrigatorio",
+          "handle-4": "pcip-pecuaria-node"
+        }
+      },
+      "width": 180,
+      "height": 230
+    },
+    {
+      "id": "pcip-pecuaria-node",
+      "type": "question",
+      "position": {
+        "x": 1500,
+        "y": 300
+      },
+      "data": {
+        "label": "Criação Intensiva (Lugares)",
+        "trechoLei": "DL 127/2013, Anexo I, n.º 6.6",
+        "opcoes": [
+          "> 40.000 aves",
+          "> 2.000 porcos (>30kg)",
+          "> 750 porcas",
+          "Abaixo destes"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-pcip-obrigatorio",
+          "handle-1": "conclusion-pcip-obrigatorio",
+          "handle-2": "conclusion-pcip-obrigatorio",
+          "handle-3": "conclusion-nao-abrangedo"
+        }
+      },
+      "width": 180,
+      "height": 157
+    },
+    {
+      "id": "conclusion-pcip-obrigatorio",
+      "type": "conclusion",
+      "position": {
+        "x": 543.8201388142771,
+        "y": -508.7173739305684
+      },
+      "data": {
+        "label": "Abrangido pelo RJPCIP",
+        "conclusaoText": "A instalação está sujeita ao regime PCIP.\n\nJustificação: A atividade ultrapassa os limiares do Anexo I do DL 127/2013.",
+        "trechoLei": "Anexo I do DL 127/2013"
+      },
+      "width": 150,
+      "height": 58,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 543.8201388142771,
+        "y": -508.7173739305684
+      },
+      "dragging": false
+    },
+    {
+      "id": "conclusion-nao-abrangedo",
+      "type": "conclusion",
+      "position": {
+        "x": 1800,
+        "y": 500
+      },
+      "data": {
+        "label": "Não Abrangido por PCIP",
+        "conclusaoText": "O projeto não atinge os limiares do Anexo I do DL 127/2013.",
+        "trechoLei": "DL 127/2013"
+      },
+      "width": 150,
+      "height": 76
+    },
+    {
+      "id": "rpag-start",
+      "type": "question",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "Existem substâncias designadas (Parte 2)?",
+        "trechoLei": "DL 150/2015, Anexo I, Parte 2",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "rpag-parte2-detail",
+          "handle-1": "rpag-categorias-node"
+        }
+      },
+      "width": 180,
+      "height": 119
+    },
+    {
+      "id": "rpag-parte2-detail",
+      "type": "question",
+      "position": {
+        "x": 300,
+        "y": -100
+      },
+      "data": {
+        "label": "Verificar Substância Específica",
+        "opcoes": [
+          "Nitrato de Amónio",
+          "Gás Natural",
+          "Produtos Petrolíferos",
+          "Outras",
+          "Voltar"
+        ],
+        "proximos": {
+          "handle-0": "rpag-calc-node",
+          "handle-1": "rpag-calc-node",
+          "handle-2": "rpag-calc-node",
+          "handle-3": "rpag-calc-node",
+          "handle-4": "rpag-categorias-node"
+        }
+      },
+      "width": 180,
+      "height": 203
+    },
+    {
+      "id": "rpag-categorias-node",
+      "type": "question",
+      "position": {
+        "x": 300,
+        "y": 150
+      },
+      "data": {
+        "label": "Categorias de Perigo (CLP)",
+        "opcoes": [
+          "Saúde (H)",
+          "Físicos (P)",
+          "Ambiente (E)",
+          "Nenhuma"
+        ],
+        "proximos": {
+          "handle-0": "rpag-calc-node",
+          "handle-1": "rpag-calc-node",
+          "handle-2": "rpag-calc-node",
+          "handle-3": "conclusion-isento-rpag"
+        }
+      },
+      "width": 180,
+      "height": 157
+    },
+    {
+      "id": "rpag-calc-node",
+      "type": "question",
+      "position": {
+        "x": 700,
+        "y": 50
+      },
+      "data": {
+        "label": "Regra da Adição",
+        "opcoes": [
+          "Nível Superior",
+          "Nível Inferior",
+          "Q >= Coluna 3",
+          "Q >= Coluna 2",
+          "Soma < 1"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-rpag-superior",
+          "handle-1": "conclusion-rpag-inferior",
+          "handle-2": "conclusion-rpag-superior",
+          "handle-3": "conclusion-rpag-inferior",
+          "handle-4": "conclusion-isento-rpag"
+        }
+      },
+      "width": 180,
+      "height": 185
+    },
+    {
+      "id": "conclusion-rpag-superior",
+      "type": "conclusion",
+      "position": {
+        "x": 1073.2877125433088,
+        "y": -469.3332545958974
+      },
+      "data": {
+        "label": "RPAG: Nível Superior",
+        "conclusaoText": "Estabelecimento Seveso III Nível Superior."
+      },
+      "width": 150,
+      "height": 58,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1073.2877125433088,
+        "y": -469.3332545958974
+      },
+      "dragging": false
+    },
+    {
+      "id": "conclusion-rpag-inferior",
+      "type": "conclusion",
+      "position": {
+        "x": 1100,
+        "y": 150
+      },
+      "data": {
+        "label": "RPAG: Nível Inferior",
+        "conclusaoText": "Estabelecimento Seveso III Nível Inferior."
+      },
+      "width": 150,
+      "height": 58
+    },
+    {
+      "id": "conclusion-isento-rpag",
+      "type": "conclusion",
+      "position": {
+        "x": 1100,
+        "y": 450
+      },
+      "data": {
+        "label": "Fora do Âmbito RPAG",
+        "conclusaoText": "Não atinge quantidades-limiar."
+      },
+      "width": 150,
+      "height": 58
+    },
+    {
+      "id": "start-sensivel",
+      "type": "question",
+      "position": {
+        "x": 0,
+        "y": 500
+      },
+      "data": {
+        "label": "Gestão de REEE?",
+        "opcoes": [
+          "Sim",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "reee-categorias",
+          "handle-1": "agro-start"
+        }
+      },
+      "width": 180,
+      "height": 101
+    },
+    {
+      "id": "reee-categorias",
+      "type": "question",
+      "position": {
+        "x": 300,
+        "y": 400
+      },
+      "data": {
+        "label": "Categoria REEE",
+        "opcoes": [
+          "Cat 1, 2 ou 3",
+          "Cat 4, 5 ou 6"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-reee-perigoso",
+          "handle-1": "conclusion-reee-geral"
+        }
+      },
+      "width": 180,
+      "height": 101
+    },
+    {
+      "id": "agro-start",
+      "type": "question",
+      "position": {
+        "x": 300,
+        "y": 650
+      },
+      "data": {
+        "label": "Risco Veterinário?",
+        "opcoes": [
+          "Matéria-prima animal",
+          "Subprodutos (SAVAN)",
+          "Rações",
+          "Nenhuma"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-agro-ncv",
+          "handle-1": "conclusion-agro-ncv",
+          "handle-2": "conclusion-agro-ncv",
+          "handle-3": "conclusion-agro-comum"
+        }
+      },
+      "width": 180,
+      "height": 157
+    },
+    {
+      "id": "conclusion-reee-perigoso",
+      "type": "conclusion",
+      "position": {
+        "x": 700,
+        "y": 400
+      },
+      "data": {
+        "label": "REEE Sensível",
+        "conclusaoText": "Gestão de resíduos perigosos."
+      },
+      "width": 150,
+      "height": 58
+    },
+    {
+      "id": "conclusion-reee-geral",
+      "type": "conclusion",
+      "position": {
+        "x": 700,
+        "y": 500
+      },
+      "data": {
+        "label": "REEE Comum",
+        "conclusaoText": "Gestão de resíduos comuns."
+      },
+      "width": 150,
+      "height": 58
+    },
+    {
+      "id": "conclusion-agro-ncv",
+      "type": "conclusion",
+      "position": {
+        "x": 700,
+        "y": 600
+      },
+      "data": {
+        "label": "Agro: NCV Necessário",
+        "conclusaoText": "Exige Número de Controlo Veterinário."
+      },
+      "width": 150,
+      "height": 58
+    },
+    {
+      "id": "conclusion-agro-comum",
+      "type": "conclusion",
+      "position": {
+        "x": 700,
+        "y": 700
+      },
+      "data": {
+        "label": "Agro Comum",
+        "conclusaoText": "Atividade de baixo risco veterinário."
+      },
+      "width": 150,
+      "height": 58
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-start-node-refinaria-detail-handle-0",
+      "source": "start-node",
+      "target": "refinaria-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-start-node-energy-node-handle-1",
+      "source": "start-node",
+      "target": "energy-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-refinaria-detail-conclusion-aia-obrigatoria-handle-0",
+      "source": "refinaria-detail",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-0",
+      "label": "Refinaria de petróleo bruto",
+      "animated": true
+    },
+    {
+      "id": "e-refinaria-detail-conclusion-aia-obrigatoria-handle-1",
+      "source": "refinaria-detail",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-1",
+      "label": "Gaseificação/Liquefação >= 500t carvão/dia",
+      "animated": true
+    },
+    {
+      "id": "e-refinaria-detail-energy-node-handle-2",
+      "source": "refinaria-detail",
+      "target": "energy-node",
+      "sourceHandle": "handle-2",
+      "label": "Nenhuma das anteriores",
+      "animated": true
+    },
+    {
+      "id": "e-energy-node-energy-detail-handle-0",
+      "source": "energy-node",
+      "target": "energy-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-energy-node-quimica-node-handle-1",
+      "source": "energy-node",
+      "target": "quimica-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-energy-detail-conclusion-aia-obrigatoria-handle-0",
+      "source": "energy-detail",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-0",
+      "label": "Central Térmica >= 300 MW",
+      "animated": true
+    },
+    {
+      "id": "e-energy-detail-conclusion-aia-obrigatoria-handle-1",
+      "source": "energy-detail",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-1",
+      "label": "Central Nuclear ou Reator Nuclear",
+      "animated": true
+    },
+    {
+      "id": "e-energy-detail-conclusion-aia-obrigatoria-handle-2",
+      "source": "energy-detail",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-2",
+      "label": "Instalação de Reprocessamento/Armazenagem Nuclear",
+      "animated": true
+    },
+    {
+      "id": "e-energy-detail-quimica-node-handle-3",
+      "source": "energy-detail",
+      "target": "quimica-node",
+      "sourceHandle": "handle-3",
+      "label": "Abaixo destes limiares",
+      "animated": true
+    },
+    {
+      "id": "e-quimica-node-conclusion-aia-obrigatoria-handle-0",
+      "source": "quimica-node",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-quimica-node-residuos-node-handle-1",
+      "source": "quimica-node",
+      "target": "residuos-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-residuos-node-conclusion-aia-obrigatoria-handle-0",
+      "source": "residuos-node",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-0",
+      "label": "Incineração/Aterro de Resíduos Perigosos",
+      "animated": true
+    },
+    {
+      "id": "e-residuos-node-conclusion-aia-obrigatoria-handle-1",
+      "source": "residuos-node",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-1",
+      "label": "Incineração/Tratamento Resíduos Não Perigosos > 100t/dia",
+      "animated": true
+    },
+    {
+      "id": "e-residuos-node-pecuaria-node-handle-2",
+      "source": "residuos-node",
+      "target": "pecuaria-node",
+      "sourceHandle": "handle-2",
+      "label": "Nenhum destes",
+      "animated": true
+    },
+    {
+      "id": "e-pecuaria-node-conclusion-aia-obrigatoria-handle-0",
+      "source": "pecuaria-node",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-0",
+      "label": "> 85.000 frangos ou 60.000 galinhas",
+      "animated": true
+    },
+    {
+      "id": "e-pecuaria-node-conclusion-aia-obrigatoria-handle-1",
+      "source": "pecuaria-node",
+      "target": "conclusion-aia-obrigatoria",
+      "sourceHandle": "handle-1",
+      "label": "> 3.000 porcos (>30kg) ou 900 porcas",
+      "animated": true
+    },
+    {
+      "id": "e-pecuaria-node-screening-anexo2-handle-2",
+      "source": "pecuaria-node",
+      "target": "screening-anexo2",
+      "sourceHandle": "handle-2",
+      "label": "Abaixo destes valores",
+      "animated": true
+    },
+    {
+      "id": "e-screening-anexo2-pcip-energia-detail-handle-0",
+      "source": "screening-anexo2",
+      "target": "pcip-energia-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-screening-anexo2-pcip-metais-node-handle-1",
+      "source": "screening-anexo2",
+      "target": "pcip-metais-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-energia-detail-conclusion-pcip-obrigatorio-handle-0",
+      "source": "pcip-energia-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-0",
+      "label": "Queima combustíveis >= 50 MW térmicos",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-energia-detail-conclusion-pcip-obrigatorio-handle-1",
+      "source": "pcip-energia-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-1",
+      "label": "Refinação de petróleo/gás ou Produção Coque",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-energia-detail-conclusion-pcip-obrigatorio-handle-2",
+      "source": "pcip-energia-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-2",
+      "label": "Gaseificação/Liquefação de Carvão",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-energia-detail-conclusion-pcip-obrigatorio-handle-3",
+      "source": "pcip-energia-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-3",
+      "label": "Gaseificação outros combustíveis >= 20 MW",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-energia-detail-pcip-metais-node-handle-4",
+      "source": "pcip-energia-detail",
+      "target": "pcip-metais-node",
+      "sourceHandle": "handle-4",
+      "label": "Abaixo destes limiares",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-node-pcip-metais-detail-handle-0",
+      "source": "pcip-metais-node",
+      "target": "pcip-metais-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-node-pcip-residuos-node-handle-1",
+      "source": "pcip-metais-node",
+      "target": "pcip-residuos-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-conclusion-pcip-obrigatorio-handle-0",
+      "source": "pcip-metais-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-0",
+      "label": "Gusa/Aço (vazamento) > 2,5 t/hora",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-conclusion-pcip-obrigatorio-handle-1",
+      "source": "pcip-metais-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-1",
+      "label": "Laminagem a quente > 20 t aço bruto/hora",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-conclusion-pcip-obrigatorio-handle-2",
+      "source": "pcip-metais-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-2",
+      "label": "Fundição metais ferrosos > 20 t/dia",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-conclusion-pcip-obrigatorio-handle-3",
+      "source": "pcip-metais-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-3",
+      "label": "Fundição metais não ferrosos > 4 t/dia (Pb/Cd) ou 20 t/dia (outros)",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-conclusion-pcip-obrigatorio-handle-4",
+      "source": "pcip-metais-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-4",
+      "label": "Tratamento superfície (cubas) > 30 m3",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-metais-detail-pcip-residuos-node-handle-5",
+      "source": "pcip-metais-detail",
+      "target": "pcip-residuos-node",
+      "sourceHandle": "handle-5",
+      "label": "Nenhuma destas",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-node-pcip-residuos-detail-handle-0",
+      "source": "pcip-residuos-node",
+      "target": "pcip-residuos-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-node-pcip-pecuaria-node-handle-1",
+      "source": "pcip-residuos-node",
+      "target": "pcip-pecuaria-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-detail-conclusion-pcip-obrigatorio-handle-0",
+      "source": "pcip-residuos-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-0",
+      "label": "Resíduos Perigosos > 10 t/dia",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-detail-conclusion-pcip-obrigatorio-handle-1",
+      "source": "pcip-residuos-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-1",
+      "label": "Incineração não perigosos > 3 t/hora",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-detail-conclusion-pcip-obrigatorio-handle-2",
+      "source": "pcip-residuos-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-2",
+      "label": "Eliminação não perigosos > 50 t/dia",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-detail-conclusion-pcip-obrigatorio-handle-3",
+      "source": "pcip-residuos-detail",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-3",
+      "label": "Aterros > 10 t/dia ou Cap. Total > 25.000 t",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-residuos-detail-pcip-pecuaria-node-handle-4",
+      "source": "pcip-residuos-detail",
+      "target": "pcip-pecuaria-node",
+      "sourceHandle": "handle-4",
+      "label": "Nenhuma destas",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-pecuaria-node-conclusion-pcip-obrigatorio-handle-0",
+      "source": "pcip-pecuaria-node",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-0",
+      "label": "> 40.000 aves",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-pecuaria-node-conclusion-pcip-obrigatorio-handle-1",
+      "source": "pcip-pecuaria-node",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-1",
+      "label": "> 2.000 porcos (>30kg)",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-pecuaria-node-conclusion-pcip-obrigatorio-handle-2",
+      "source": "pcip-pecuaria-node",
+      "target": "conclusion-pcip-obrigatorio",
+      "sourceHandle": "handle-2",
+      "label": "> 750 porcas",
+      "animated": true
+    },
+    {
+      "id": "e-pcip-pecuaria-node-conclusion-nao-abrangedo-handle-3",
+      "source": "pcip-pecuaria-node",
+      "target": "conclusion-nao-abrangedo",
+      "sourceHandle": "handle-3",
+      "label": "Abaixo destes",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-start-rpag-parte2-detail-handle-0",
+      "source": "rpag-start",
+      "target": "rpag-parte2-detail",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-start-rpag-categorias-node-handle-1",
+      "source": "rpag-start",
+      "target": "rpag-categorias-node",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-parte2-detail-rpag-calc-node-handle-0",
+      "source": "rpag-parte2-detail",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-0",
+      "label": "Nitrato de Amónio",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-parte2-detail-rpag-calc-node-handle-1",
+      "source": "rpag-parte2-detail",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-1",
+      "label": "Gás Natural",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-parte2-detail-rpag-calc-node-handle-2",
+      "source": "rpag-parte2-detail",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-2",
+      "label": "Produtos Petrolíferos",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-parte2-detail-rpag-calc-node-handle-3",
+      "source": "rpag-parte2-detail",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-3",
+      "label": "Outras",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-parte2-detail-rpag-categorias-node-handle-4",
+      "source": "rpag-parte2-detail",
+      "target": "rpag-categorias-node",
+      "sourceHandle": "handle-4",
+      "label": "Voltar",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-categorias-node-rpag-calc-node-handle-0",
+      "source": "rpag-categorias-node",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-0",
+      "label": "Saúde (H)",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-categorias-node-rpag-calc-node-handle-1",
+      "source": "rpag-categorias-node",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-1",
+      "label": "Físicos (P)",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-categorias-node-rpag-calc-node-handle-2",
+      "source": "rpag-categorias-node",
+      "target": "rpag-calc-node",
+      "sourceHandle": "handle-2",
+      "label": "Ambiente (E)",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-categorias-node-conclusion-isento-rpag-handle-3",
+      "source": "rpag-categorias-node",
+      "target": "conclusion-isento-rpag",
+      "sourceHandle": "handle-3",
+      "label": "Nenhuma",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-calc-node-conclusion-rpag-superior-handle-0",
+      "source": "rpag-calc-node",
+      "target": "conclusion-rpag-superior",
+      "sourceHandle": "handle-0",
+      "label": "Nível Superior",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-calc-node-conclusion-rpag-inferior-handle-1",
+      "source": "rpag-calc-node",
+      "target": "conclusion-rpag-inferior",
+      "sourceHandle": "handle-1",
+      "label": "Nível Inferior",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-calc-node-conclusion-rpag-superior-handle-2",
+      "source": "rpag-calc-node",
+      "target": "conclusion-rpag-superior",
+      "sourceHandle": "handle-2",
+      "label": "Q >= Coluna 3",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-calc-node-conclusion-rpag-inferior-handle-3",
+      "source": "rpag-calc-node",
+      "target": "conclusion-rpag-inferior",
+      "sourceHandle": "handle-3",
+      "label": "Q >= Coluna 2",
+      "animated": true
+    },
+    {
+      "id": "e-rpag-calc-node-conclusion-isento-rpag-handle-4",
+      "source": "rpag-calc-node",
+      "target": "conclusion-isento-rpag",
+      "sourceHandle": "handle-4",
+      "label": "Soma < 1",
+      "animated": true
+    },
+    {
+      "id": "e-start-sensivel-reee-categorias-handle-0",
+      "source": "start-sensivel",
+      "target": "reee-categorias",
+      "sourceHandle": "handle-0",
+      "label": "Sim",
+      "animated": true
+    },
+    {
+      "id": "e-start-sensivel-agro-start-handle-1",
+      "source": "start-sensivel",
+      "target": "agro-start",
+      "sourceHandle": "handle-1",
+      "label": "Não",
+      "animated": true
+    },
+    {
+      "id": "e-reee-categorias-conclusion-reee-perigoso-handle-0",
+      "source": "reee-categorias",
+      "target": "conclusion-reee-perigoso",
+      "sourceHandle": "handle-0",
+      "label": "Cat 1, 2 ou 3",
+      "animated": true
+    },
+    {
+      "id": "e-reee-categorias-conclusion-reee-geral-handle-1",
+      "source": "reee-categorias",
+      "target": "conclusion-reee-geral",
+      "sourceHandle": "handle-1",
+      "label": "Cat 4, 5 ou 6",
+      "animated": true
+    },
+    {
+      "id": "e-agro-start-conclusion-agro-ncv-handle-0",
+      "source": "agro-start",
+      "target": "conclusion-agro-ncv",
+      "sourceHandle": "handle-0",
+      "label": "Matéria-prima animal",
+      "animated": true
+    },
+    {
+      "id": "e-agro-start-conclusion-agro-ncv-handle-1",
+      "source": "agro-start",
+      "target": "conclusion-agro-ncv",
+      "sourceHandle": "handle-1",
+      "label": "Subprodutos (SAVAN)",
+      "animated": true
+    },
+    {
+      "id": "e-agro-start-conclusion-agro-ncv-handle-2",
+      "source": "agro-start",
+      "target": "conclusion-agro-ncv",
+      "sourceHandle": "handle-2",
+      "label": "Rações",
+      "animated": true
+    },
+    {
+      "id": "e-agro-start-conclusion-agro-comum-handle-3",
+      "source": "agro-start",
+      "target": "conclusion-agro-comum",
+      "sourceHandle": "handle-3",
+      "label": "Nenhuma",
+      "animated": true
+    }
+  ]
+}
