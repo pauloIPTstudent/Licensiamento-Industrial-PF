@@ -1,0 +1,48 @@
+### Variáveis
+@baseUrl = http://localhost:3000/api
+
+### Listar todos os questionários
+GET {{baseUrl}}/questionnaires
+Content-Type: application/json
+
+###
+
+### Criar um novo questionário (POST)
+POST {{baseUrl}}/questionnaires
+Content-Type: application/json
+
+{
+  "title": "Questionário de Teste PoC",
+  "description": "Validando a estrutura com SQLite local",
+  "content": {
+    "versao": 1,
+    "perguntas": [
+      { "id": "q1", "pergunta": "O Next.js é produtivo?", "tipo": "boolean" },
+      { "id": "q2", "pergunta": "Nota de 1 a 10", "tipo": "number" }
+    ]
+  }
+}
+
+###
+
+### Obter um questionário específico (GET por ID)
+# Substitua o '1' pelo ID real retornado no POST anterior
+GET {{baseUrl}}/questionnaires/3
+Content-Type: application/json
+
+###
+
+### Editar um questionário (PATCH)
+# Altera apenas o título, mantendo o restante
+PATCH {{baseUrl}}/questionnaires/3
+Content-Type: application/json
+
+{
+  "title": "Título Atualizado via Extensão VS Code"
+}
+
+###
+
+### Apagar um questionário (DELETE)
+DELETE {{baseUrl}}/questionnaires/3
+Content-Type: application/json

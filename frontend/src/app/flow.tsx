@@ -109,18 +109,38 @@ function DnDFlow({ onExport, initialNodes, setNodesHome, initialEdges, setEdgesH
   }, [nodes, edges, setNodes, setEdges, reactFlowInstance]);
 
   // --- FUNÇÃO PARA SALVAR ARQUIVO JSON ---
-  const saveToFile = useCallback(() => {
-    const flowData = { nodes, edges };
-    const blob = new Blob([JSON.stringify(flowData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'fluxo-especialista.json';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, [nodes, edges]);
+// --- FUNÇÃO PARA SALVAR NA API (POST) ---
+const saveToApi = useCallback(async () => {
+  const flowData = { nodes, edges };
+
+  // Criamos o objeto no formato esperado pela tua tabela Prisma
+  const payload = {
+    title: "Fluxo Exportado do Editor", // Podes depois tornar isto um input
+    description: "Criado via React Flow Editor",
+    content: flowData // O teu content já aceita JSON no banco
+  };
+
+  try {
+    const response = await fetch('/api/questionnaires', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      alert(`✅ Salvo com sucesso! ID: ${data.id}`);
+    } else {
+      const errorData = await response.json();
+      alert(`❌ Erro ao salvar: ${errorData.error || 'Erro desconhecido'}`);
+    }
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+    alert("❌ Erro de conexão com a API.");
+  }
+}, [nodes, edges]);
 
   const selectedNode = useMemo(
     () => nodes.find((n) => n.id === selectedNodeId) || null,
@@ -244,10 +264,10 @@ function DnDFlow({ onExport, initialNodes, setNodesHome, initialEdges, setEdgesH
           </button>
           
           <button 
-            onClick={saveToFile}
+            onClick={saveToApi}
             className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold shadow-md transition-all flex items-center gap-2"
           >
-            <span>💾</span> Salvar JSON
+            <span>💾</span> Publicar Questionário
           </button>
         </div>
 
