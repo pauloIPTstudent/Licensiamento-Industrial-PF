@@ -156,7 +156,7 @@
         "proximos": {
           "handle-0": "conclusion-aia-obrigatoria",
           "handle-1": "conclusion-aia-obrigatoria",
-          "handle-2": "screening-anexo2"
+          "handle-2": "analise-sentimento"
         }
       },
       "width": 180,
@@ -184,22 +184,28 @@
       "dragging": false
     },
     {
-      "id": "screening-anexo2",
-      "type": "conclusion",
+      "id": "analise-sentimento",
+      "type": "question",
       "position": {
         "x": 1800,
         "y": 500
       },
       "data": {
         "label": "Análise de Sensibilidade (Anexo II/III)",
-        "conclusaoText": "O projeto não atinge os limiares de AIA direta (Anexo I). \n\nPróximo Passo: Analisar se está no Anexo II e aplicar os critérios do Anexo III (Dimensão, Localização e Impacte) para determinar se a APA decide pela necessidade de AIA.",
-        "trechoLei": "Anexo II e III do DL 152-B/2013"
+        "descricao": "O projeto não atinge os limiares de AIA direta (Anexo I). \n\nPróximo Passo: Analisar se está no Anexo II e aplicar os critérios do Anexo III (Dimensão, Localização e Impacte) para determinar se a APA decide pela necessidade de AIA.",
+        "trechoLei": "Anexo II e III do DL 152-B/2013",
+        "opcoes": [
+          "Próxima Pergunta"
+        ],
+        "proximos": {
+          "handle-0": "energia-pergunta"
+        }
       },
       "width": 180,
       "height": 119
     },
     {
-      "id": "screening-anexo2",
+      "id": "energia-pergunta",
       "type": "question",
       "position": {
         "x": 1800,
@@ -367,7 +373,7 @@
           "handle-0": "conclusion-pcip-obrigatorio",
           "handle-1": "conclusion-pcip-obrigatorio",
           "handle-2": "conclusion-pcip-obrigatorio",
-          "handle-3": "conclusion-nao-abrangedo"
+          "handle-3": "cele-start-node"
         }
       },
       "width": 180,
@@ -680,6 +686,94 @@
       },
       "width": 150,
       "height": 58
+    },
+    {
+      "id": "cele-start-node",
+      "type": "question",
+      "position": {
+        "x": 2100,
+        "y": 0
+      },
+      "data": {
+        "label": "Abrangido pelo Regime CELE (Gases Efeito Estufa)?",
+        "trechoLei": "DL 101/2024, Anexo II",
+        "opcoes": [
+          "Sim (Combustão > 20MW, Refinação, Metais, etc.)",
+          "Não"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-tipo2-cele",
+          "handle-1": "sir-dimensao-node"
+        }
+      },
+      "width": 200,
+      "height": 150
+    },
+    {
+      "id": "sir-dimensao-node",
+      "type": "question",
+      "position": {
+        "x": 2100,
+        "y": 300
+      },
+      "data": {
+        "label": "Verificar Limiares de Potência e Trabalhadores (SIR)",
+        "trechoLei": "DL 73/2015, Art. 25.º",
+        "opcoes": [
+          "Potência > 99kVA ou > 20 trabalhadores",
+          "Potência <= 99kVA E <= 20 trabalhadores",
+          "Microempresa (<= 41.4kVA e <= 5 trab.)"
+        ],
+        "proximos": {
+          "handle-0": "conclusion-tipo2-geral",
+          "handle-1": "conclusion-tipo3",
+          "handle-2": "conclusion-tipo3"
+        }
+      },
+      "width": 200,
+      "height": 180
+    },
+    {
+      "id": "conclusion-tipo2-cele",
+      "type": "conclusion",
+      "position": {
+        "x": 2400,
+        "y": -50
+      },
+      "data": {
+        "label": "Licenciamento Tipo 2 (CELE)",
+        "conclusaoText": "Estabelecimento sujeito ao regime CELE. Resultado: Licenciamento Tipo 2.\n\nFundamentação: DL 101/2024 e Anexo II do SIR."
+      },
+      "width": 180,
+      "height": 80
+    },
+    {
+      "id": "conclusion-tipo2-geral",
+      "type": "conclusion",
+      "position": {
+        "x": 2400,
+        "y": 250
+      },
+      "data": {
+        "label": "Licenciamento Tipo 2 (Geral)",
+        "conclusaoText": "Não abrangido pelo Tipo 1, mas excede os limites de potência/pessoal do Tipo 3.\n\nResultado: Licenciamento Industrial Tipo 2."
+      },
+      "width": 180,
+      "height": 80
+    },
+    {
+      "id": "conclusion-tipo3",
+      "type": "conclusion",
+      "position": {
+        "x": 2400,
+        "y": 450
+      },
+      "data": {
+        "label": "Licenciamento Tipo 3",
+        "conclusaoText": "Estabelecimento de pequena dimensão ou microempresa.\n\nResultado: Licenciamento Industrial Tipo 3 (procedimento simplificado).\n\nFundamentação: DL 73/2015."
+      },
+      "width": 180,
+      "height": 80
     }
   ],
   "edges": [
@@ -1234,6 +1328,54 @@
       "sourceHandle": "handle-3",
       "label": "Nenhuma",
       "animated": true
-    }
+    },
+    {
+    "id": "e-nao-tipo1-para-cele",
+    "source": "pcip-pecuaria-node",
+    "target": "cele-start-node",
+    "sourceHandle": "handle-3",
+    "label": "Não abrangido pelo Tipo 1",
+    "animated": true
+  },
+  {
+    "id": "e-cele-sim",
+    "source": "cele-start-node",
+    "target": "conclusion-tipo2-cele",
+    "sourceHandle": "handle-0",
+    "label": "Sim",
+    "animated": true
+  },
+  {
+    "id": "e-cele-nao",
+    "source": "cele-start-node",
+    "target": "sir-dimensao-node",
+    "sourceHandle": "handle-1",
+    "label": "Não",
+    "animated": true
+  },
+  {
+    "id": "e-sir-tipo2",
+    "source": "sir-dimensao-node",
+    "target": "conclusion-tipo2-geral",
+    "sourceHandle": "handle-0",
+    "label": "Dimensão Superior",
+    "animated": true
+  },
+  {
+    "id": "e-sir-tipo3-a",
+    "source": "sir-dimensao-node",
+    "target": "conclusion-tipo3",
+    "sourceHandle": "handle-1",
+    "label": "Tipo 3 Standard",
+    "animated": true
+  },
+  {
+    "id": "e-sir-tipo3-b",
+    "source": "sir-dimensao-node",
+    "target": "conclusion-tipo3",
+    "sourceHandle": "handle-2",
+    "label": "Microempresa",
+    "animated": true
+  }
   ]
 }
